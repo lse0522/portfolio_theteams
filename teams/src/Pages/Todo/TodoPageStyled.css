@@ -1,0 +1,254 @@
+h1{
+  font-size: 32px;
+}
+.container{
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+}
+.navbar{
+  flex: 0.5;
+}
+.content{
+  flex: 9.5;
+}
+/* Navbar */
+.navbar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-color);
+}
+.navbar i{
+  font-size: 30px;
+  margin-top: 40px;
+  color: #fff;
+}
+/* Content */
+.content{
+  background-color: #fff;
+  padding: 40px;
+}
+.content-inner{
+  height: 100%;
+  /* border: solid 1px black; */
+  position: relative;
+}
+.content-inner h1{
+  margin: 60px 0;
+}
+.task-menu{
+  display: flex;
+}
+.task-menu > li{
+  padding: 20px 40px;
+  position: relative;
+  color: var(--light-gray);
+}
+.task-menu > li.view{
+  color: black;
+}
+.task-menu > li.view::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--main-color);
+  animation: view-border 1s both;
+}
+@keyframes view-border{
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 100%;
+  }
+}
+.menu-content{
+  padding: 20px;
+  max-height: 600px;
+}
+/* menu-content */
+.todolist{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 800px;
+  padding: 4px 0;
+}
+.todolist > div{
+  display: flex;
+  align-items: center;
+}
+.todolist input[type="checkbox"]{
+  display: none;
+}
+.todolist em{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: solid 1px var(--light-gray);
+  border-radius: 5px;
+  margin-right: 10px;
+  position: relative;
+}
+.todolist input[type="checkbox"]:checked + em::before{
+  content: '\F26E';
+  font-family: 'bootstrap-icons';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: var(--crimson);
+}
+.todolist span{
+  width: 140px;
+  height: 40px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todolist:nth-child(1) span{
+  background-color: var(--bg-purple-color);
+  color: var(--purple-color);
+}
+.todolist:nth-child(2) span{
+  background-color: var(--bg-yellow-color);
+  color: var(--yellow-color);
+}
+.todolist:nth-child(3) span{
+  background-color: var(--bg-gray-color);
+  color: var(--gray-color);
+}
+.btn-delect{
+  font-size: 24px;
+  margin: 0 6px;
+}
+.todolist.bg:hover{
+  background-color: var(--bg-gray-color);
+  border-radius: 10px;
+}
+.todolist.bg:hover .btn-delect{
+  color: var(--crimson);
+}
+.all-delet:hover{
+  color: var(--crimson);
+}
+/* editor-container */
+.editor-container{
+  position: absolute;
+  width: 80px;
+  height: 200px;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+}
+.editor-container i{
+  font-size: 24px;
+  color: var(--main-color);
+  transition: 0.35s;
+  padding: 30px 0;
+}
+.editor-container i:hover{
+  transform: scale(1.5);
+  color: var(--purple-color);
+}
+/* write-container */
+.write-container{
+  position: fixed;
+  background-color: #fff;
+  border-radius: 30px;
+  width: 700px;
+  height: 90%;
+  top: 40px;
+  right: 40px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  animation: write-container-view 1s both;
+}
+@keyframes write-container-view{
+  0%{
+    right: -800px;
+  }
+  100%{
+  right: 40px;
+  }
+}
+.write-container.close{
+  animation: write-container-close 1s both;
+}
+@keyframes write-container-close{
+  0%{
+    right: 40px;
+  }
+  100%{
+    right: -800px;
+  }
+}
+.write-inner{
+  height: 100%;
+}
+form label{
+  text-transform: capitalize;
+  display: block;
+  margin-top: 20px;
+}
+form input,
+form textarea{
+  border: solid 1px var(--gloudy-gray);
+  border-radius: 5px;
+  padding: 10px;
+}
+form input:focus{
+  outline: none;
+}
+.title-field input[type="text"],
+textarea{
+  width: 100%;
+  margin: 8px 0;
+}
+form textarea{
+  height: 400px;
+}
+form button{
+  width: 100%;
+  padding: 20px;
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+.category-field > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+.category-field select{
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+}
+.category-field span{
+  flex: 1;
+  border: solid 1px var(--gloudy-gray);
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 14px;
+}

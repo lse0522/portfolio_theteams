@@ -1,6 +1,3 @@
-import "./LoginPageStyled.css";
-import '../../responsive.css';
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 
@@ -22,7 +19,6 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("로그인", email, pw)
     try {
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, pw);

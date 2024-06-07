@@ -2,7 +2,8 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // Import Css
-import './reset.css'
+import './css/reset.css'
+import './css/comment.css'
 
 // Import
 import React from "react";

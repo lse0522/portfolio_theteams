@@ -1,19 +1,16 @@
-h1{
-  font-size: 32px;
-}
-.container{
+/* LayOut */
+.todo-container{
   overflow: hidden;
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: space-between;
-  background-color: var(--bg-color);
+  float: left;
 }
 .navbar{
-  flex: 0.5;
+  width: 80px;
 }
 .content{
-  flex: 9.5;
+  width: 100%;
 }
 /* Navbar */
 .navbar{
@@ -22,26 +19,47 @@ h1{
   align-items: center;
   background-color: var(--main-color);
 }
+.navbar a{
+  margin-top: 40px;
+  transition: 0.35s;
+}
 .navbar i{
   font-size: 30px;
-  margin-top: 40px;
   color: #fff;
 }
-/* Content */
-.content{
+.navbar a:hover{
+  transform: translateY(-10px);
+}
+.todo-container .navbar a:nth-child(4) i{
+  z-index: 1;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.todo-container .navbar a:nth-child(4) i:after{
+  content: '';
+  z-index: -1;
+  position: absolute;
+  width: 50px;
+  height: 50px;
   background-color: #fff;
+  border-radius: 50%;
+}
+/* Content */
+.todo-content{
   padding: 40px;
+  width: 100%;
 }
 .content-inner{
   height: 100%;
-  /* border: solid 1px black; */
   position: relative;
-}
-.content-inner h1{
-  margin: 60px 0;
+
 }
 .task-menu{
   display: flex;
+  margin: 40px 0;
 }
 .task-menu > li{
   padding: 20px 40px;
@@ -69,17 +87,43 @@ h1{
     width: 100%;
   }
 }
-.menu-content{
-  padding: 20px;
-  max-height: 600px;
+/* editor-container */
+.editor-container{
+  position: absolute;
+  width: 60px;
+  height: 160px;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+.editor-container i{
+  font-size: 20px;
+  color: var(--main-color);
+  transition: 0.35s;
+  padding: 20px 0;
+}
+.editor-container i:hover{
+  transform: scale(1.35);
+  color: var(--purple-color);
 }
 /* menu-content */
+.modal-todo-content{
+  max-height: 600px;
+}
+.todo-label{
+  max-width: 700px;
+}
 .todolist{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 800px;
-  padding: 4px 0;
 }
 .todolist > div{
   display: flex;
@@ -94,7 +138,7 @@ h1{
   height: 20px;
   border: solid 1px var(--light-gray);
   border-radius: 5px;
-  margin-right: 10px;
+  margin: 0 10px;
   position: relative;
 }
 .todolist input[type="checkbox"]:checked + em::before{
@@ -114,22 +158,12 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: capitalize;
 }
-.todolist:nth-child(1) span{
-  background-color: var(--bg-purple-color);
-  color: var(--purple-color);
-}
-.todolist:nth-child(2) span{
-  background-color: var(--bg-yellow-color);
-  color: var(--yellow-color);
-}
-.todolist:nth-child(3) span{
-  background-color: var(--bg-gray-color);
-  color: var(--gray-color);
-}
+/* Todo Delect */
 .btn-delect{
   font-size: 24px;
-  margin: 0 6px;
+  margin: 0 10px;
 }
 .todolist.bg:hover{
   background-color: var(--bg-gray-color);
@@ -141,38 +175,12 @@ h1{
 .all-delet:hover{
   color: var(--crimson);
 }
-/* editor-container */
-.editor-container{
-  position: absolute;
-  width: 80px;
-  height: 200px;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-}
-.editor-container i{
-  font-size: 24px;
-  color: var(--main-color);
-  transition: 0.35s;
-  padding: 30px 0;
-}
-.editor-container i:hover{
-  transform: scale(1.5);
-  color: var(--purple-color);
-}
 /* write-container */
 .write-container{
   position: fixed;
   background-color: #fff;
   border-radius: 30px;
-  width: 700px;
+  width: 40%;
   height: 90%;
   top: 40px;
   right: 40px;
@@ -199,13 +207,20 @@ h1{
     right: -800px;
   }
 }
+/* ############ Modal : Write ############ */
 .write-inner{
   height: 100%;
+}
+.write-inner i{
+  font-size: 20px;
 }
 form label{
   text-transform: capitalize;
   display: block;
   margin-top: 20px;
+}
+form label em{
+  margin: 0 6px;
 }
 form input,
 form textarea{
@@ -213,7 +228,8 @@ form textarea{
   border-radius: 5px;
   padding: 10px;
 }
-form input:focus{
+form input:focus,
+form textarea:focus{
   outline: none;
 }
 .title-field input[type="text"],
@@ -222,7 +238,7 @@ textarea{
   margin: 8px 0;
 }
 form textarea{
-  height: 400px;
+  height: 260px;
 }
 form button{
   width: 100%;
@@ -230,9 +246,9 @@ form button{
   background-color: var(--main-color);
   color: #fff;
   border-radius: 5px;
-  margin-top: 40px;
 }
-.category-field > div{
+.category-field > div,
+.status-field > div{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,13 +258,65 @@ form button{
 }
 .category-field select{
   flex: 1;
-  padding: 10px;
   text-align: center;
 }
-.category-field span{
+.category-field input[type="text"]{
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+}
+.category-field input[type="text"]::placeholder{
+  font-size: 14px;
+  color: var(--gloudy-gray);
+}
+.status-field input[type="radio"]{
+  display: none;
+}
+.status-field label:not(.status-title){
+  margin: 0;
   flex: 1;
   border: solid 1px var(--gloudy-gray);
   padding: 10px;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 12px;
+  transition: 0.35s;
+}
+.status-radios label:nth-of-type(1):hover,
+#status-ready:checked + label,
+.todo-label span.mint{
+  color: var(--mint-color);
+  background-color: var(--bg-mint-color);
+  border-color: transparent;
+}
+.status-radios label:nth-of-type(2):hover,
+#status-inprogress:checked + label,
+.todo-label span.yellow{
+  color: var(--yellow-color);
+  background-color: var(--bg-yellow-color);
+  border-color: transparent;
+}
+.status-radios label:nth-of-type(3):hover,
+#status-inreview:checked + label,
+.todo-label span.purple{
+  color: var(--purple-color);
+  background-color: var(--bg-purple-color);
+  border-color: transparent;
+}
+.status-radios label:nth-of-type(4):hover,
+#status-done:checked + label,
+.todo-label span.gray{
+  color: var(--gray-color);
+  background-color: var(--bg-gray-color);
+  border-color: transparent;
+}
+/* TodoTask Null */
+.todo-content-null{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+.todo-content-null h2{
+  margin: 40px;
 }

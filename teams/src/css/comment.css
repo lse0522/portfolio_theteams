@@ -1,13 +1,17 @@
-.login-container{
+/* ####################### Login/Sign Container ####################### */
+.login-container,
+.signup-container{
   width: 100%;
   height: 100vh;
 }
-.login-container > div{
+.login-container > div,
+.signup-container > div{
   width: 50%;
   height: 100%;
   float: left;
 }
-.login-inner:nth-child(1){
+.login-inner:nth-child(1),
+.signup-inner:nth-child(1){
   background-color:  var(--main-color);
   position: relative;
 }
@@ -50,8 +54,9 @@
     transform: rotate(360deg);
   }
 }
-/* From */
-.login-inner:nth-child(2){
+/* ####################### From ####################### */
+.login-inner:nth-child(2),
+.signup-inner:nth-child(2){
   padding: 0 140px;
   display: flex;
   justify-content: center;
@@ -69,16 +74,19 @@ form label{
   display: block;
   margin-top: 20px;
 }
-form input:not(input[type="checkbox"]){
+form input:not(input[type="checkbox"]),
+form select{
   border: solid 1px var(--gloudy-gray);
   border-radius: 5px;
   padding: 10px;
 }
-form input:focus{
+form input:focus,
+form select:focus{
   outline: none;
 }
 .email-field input[type="email"],
-.pw-field input[type="password"]{
+.pw-field input[type="password"],
+.name-field input[type="text"]{
   width: 100%;
   margin: 8px 0;
 }
@@ -89,6 +97,10 @@ form button{
   color: #fff;
   border-radius: 5px;
   margin-top: 40px;
+}
+form em{
+  font-size: 12px;
+  color: var(--crimson);
 }
 /* status */
 .status{
@@ -129,3 +141,18 @@ form p{
   text-align: center;
   margin-top: 40px;
 }
+/* SignUp - Email Field */
+.email-field > div{
+  margin: 8px 0;
+  display: flex;
+}
+.email-field div input[type="text"],
+.email-field div select{
+  flex: 3;
+}
+.email-field span{
+  text-align: center;
+  flex: 1;
+  padding: 10px;
+}
+/* ####################### TodoTask ####################### */

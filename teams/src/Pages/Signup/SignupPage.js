@@ -1,10 +1,6 @@
-import "./SignupPageStyled.css";
-import '../../responsive.css';
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 
-// Import Firebase : SignUp
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import {app} from '../../firebase';
 
@@ -69,8 +65,8 @@ function SignupPage() {
       </div>
       <div className="signup-inner">
         <form>
-        <h1>Welcome!</h1>
-          <div className="input-field">
+        <h1>Sign Up!</h1>
+          <div className="name-field">
             <label>user name</label>
             <input type="text" onChange={onChangeName} />
             {

@@ -1,0 +1,33 @@
+/* ########################### Contack ########################### */
+.contack-table{
+  width: 100%;
+  text-align: left;
+  margin-top: 40px;
+  border-collapse: collapse;
+}
+.contack-title th{
+  padding: 20px 0;
+}
+.contack-content tr td{
+  padding: 10px 0;
+  line-height: 40px;
+}
+.contack-content .user-img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gloudy-gray);
+  float: left;
+  margin: 0 10px;
+}
+.contack-content tr i{
+  padding: 10px;
+  font-size: 20px;
+  color: transparent;
+}
+.contack-content tr:hover{
+  background-color: var(--bg-gray-color);
+}
+.contack-content tr:hover i{
+  color: black;
+}

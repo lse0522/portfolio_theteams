@@ -15,6 +15,7 @@ import SignupPage from './Pages/Signup/SignupPage';
 import HomePage from './Pages/Home/HomePage';
 import TodoPage from './Pages/Todo/TodoPage';
 import ContactPage from './Pages/Contact/ContactPage';
+import ProfilePage from './Pages/Profile/ProfilePage';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Route path="/home" element={<HomePage />}></Route>
       <Route path="/todo" element={<TodoPage />}></Route>
       <Route path="/contact" element={<ContactPage />}></Route>
+      <Route path="/profile" element={<ProfilePage />}></Route>
     </Routes>
     </>
   );

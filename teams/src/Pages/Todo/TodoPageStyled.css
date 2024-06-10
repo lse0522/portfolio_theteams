@@ -1,85 +1,107 @@
 /* LayOut */
 .todo-container{
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  display: flex;
-  float: left;
+  display: flex; 
 }
 .navbar{
   width: 80px;
-}
-.content{
-  width: 100%;
 }
 /* Navbar */
 .navbar{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--main-color);
+  border-right: solid 1px var(--gloudy-gray);
 }
 .navbar a{
   margin-top: 40px;
   transition: 0.35s;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
 }
 .navbar i{
-  font-size: 30px;
-  color: #fff;
+  font-size: 24px;
+  color: var(--light-gray);
 }
 .navbar a:hover{
   transform: translateY(-10px);
 }
 .todo-container .navbar a:nth-child(4) i{
-  z-index: 1;
   color: var(--main-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
-.todo-container .navbar a:nth-child(4) i:after{
-  content: '';
-  z-index: -1;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-/* Content */
+/* Content LayOut */
 .todo-content{
-  padding: 40px;
   width: 100%;
+  height: 100%;
+  display: flex;
+}
+.todo-content > div{
+  padding: 40px 20px;
+}
+.content-menu{
+  width: 20%;
+  position: relative;
+  border-right: solid 1px var(--gloudy-gray);
 }
 .content-inner{
-  height: 100%;
-  position: relative;
-
+  width: 80%;
 }
-.task-menu{
+/* ################# TodoTask - menu ################# */
+/* Menu - Title */
+.menu-title{
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-title i,
+.delect-button i{
+  color: var(--main-color);
+  font-size: 16px;
+  position: relative;
+  transition: 0.35s;
+}
+.menu-title i:hover::after{
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-gray-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+/* Menu */
+.task-menu{
   margin: 40px 0;
 }
 .task-menu > li{
-  padding: 20px 40px;
+  padding: 10px;
+  color: var(--light-gray); 
   position: relative;
-  color: var(--light-gray);
 }
 .task-menu > li.view{
   color: black;
 }
-.task-menu > li.view::before{
+.task-menu > li.view::after{
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  height: 4px;
-  background-color: var(--main-color);
-  animation: view-border 1s both;
+  height: 100%;
+  background-color: var(--bg-purple-color);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  animation: todotask-menu-view 2s ease-in-out both;
 }
-@keyframes view-border{
+@keyframes todotask-menu-view{
   0%{
     width: 0;
   }
@@ -87,42 +109,76 @@
     width: 100%;
   }
 }
-/* editor-container */
-.editor-container{
+/* Menu - delect button */
+.delect-button{
   position: absolute;
-  width: 60px;
-  height: 160px;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #fff;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-}
-.editor-container i{
-  font-size: 20px;
-  color: var(--main-color);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
   transition: 0.35s;
-  padding: 20px 0;
 }
-.editor-container i:hover{
-  transform: scale(1.35);
-  color: var(--purple-color);
+.delect-button i{
+  transform: translateY(2px);
+}
+.delect-button:hover{
+  background-color: var(--main-color);
+}
+.delect-button:hover i{
+  color: #fff;
 }
 /* menu-content */
+/* TodoTask content + write comment css */
+.status-radios label:nth-of-type(1):hover,
+#status-ready:checked + label,
+.todo-label span.mint,
+.detail-container .detail-inner span.mint{
+  color: var(--mint-color);
+  background-color: var(--bg-mint-color);
+  border-color: transparent;
+}
+.status-radios label:nth-of-type(2):hover,
+#status-inprogress:checked + label,
+.todo-label span.yellow,
+.detail-container .detail-inner span.yellow{
+  color: var(--yellow-color);
+  background-color: var(--bg-yellow-color);
+  border-color: transparent;
+}
+.status-radios label:nth-of-type(3):hover,
+#status-inreview:checked + label,
+.todo-label span.purple,
+.detail-container .detail-inner span.purple{
+  color: var(--purple-color);
+  background-color: var(--bg-purple-color);
+  border-color: transparent;
+}
+.status-radios label:nth-of-type(4):hover,
+#status-done:checked + label,
+.todo-label span.gray,
+.detail-container .detail-inner span.gray{
+  color: var(--gray-color);
+  background-color: var(--bg-gray-color);
+  border-color: transparent;
+}
 .modal-todo-content{
-  max-height: 600px;
+  /* border: solid 1px black; */
+}
+.todo-header{
+  margin-bottom: 40px;
 }
 .todo-label{
-  max-width: 700px;
+  width: 600px;
 }
 .todolist{
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 .todolist > div{
@@ -138,10 +194,10 @@
   height: 20px;
   border: solid 1px var(--light-gray);
   border-radius: 5px;
-  margin: 0 10px;
+  margin : 0 10px;
   position: relative;
 }
-.todolist input[type="checkbox"]:checked + em::before{
+.todolist input[type="checkbox"].complete + em::before{
   content: '\F26E';
   font-family: 'bootstrap-icons';
   position: absolute;
@@ -150,19 +206,34 @@
   transform: translate(-50%, -50%);
   font-size: 24px;
   color: var(--crimson);
-}
+} 
 .todolist span{
-  width: 140px;
-  height: 40px;
-  border-radius: 30px;
+  text-transform: capitalize;
+  width: 100px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: capitalize;
+  border-radius: 30px;
+  font-size: 12px;
 }
 /* Todo Delect */
+.all-delet{
+  font-size: 12px;
+  background-color: var(--gloudy-gray);
+  width: 60px;
+  height: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.35s;
+}
+.all-delet:hover{
+  color: var(--crimson);
+  background-color: var(--bg-crimson);
+}
 .btn-delect{
-  font-size: 24px;
   margin: 0 10px;
 }
 .todolist.bg:hover{
@@ -172,52 +243,62 @@
 .todolist.bg:hover .btn-delect{
   color: var(--crimson);
 }
-.all-delet:hover{
-  color: var(--crimson);
-}
-/* write-container */
-.write-container{
+/* ######################## Write Container ######################## */
+/* Write - Layout */
+/* Detail - Layout */
+.write-container,
+.detail-container{
   position: fixed;
   background-color: #fff;
-  border-radius: 30px;
-  width: 40%;
-  height: 90%;
-  top: 40px;
-  right: 40px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 30%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border-left: solid 1px var(--gloudy-gray);
   padding: 40px;
   animation: write-container-view 1s both;
 }
 @keyframes write-container-view{
   0%{
-    right: -800px;
+    right: -30%;
   }
   100%{
-  right: 40px;
+  right: 0;
   }
 }
-.write-container.close{
+.write-container.close,
+.detail-container.close{
   animation: write-container-close 1s both;
 }
 @keyframes write-container-close{
   0%{
-    right: 40px;
+    right: 0;
   }
   100%{
-    right: -800px;
+    right: -30%;
   }
 }
 /* ############ Modal : Write ############ */
-.write-inner{
-  height: 100%;
+.write-inner i,
+.detail-inner i{
+  position: relative;
 }
-.write-inner i{
-  font-size: 20px;
+.write-inner i:hover::after,
+.detail-inner i:hover::after{
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: var(--bg-gray-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
 }
 form label{
   text-transform: capitalize;
-  display: block;
-  margin-top: 20px;
 }
 form label em{
   margin: 0 6px;
@@ -235,26 +316,25 @@ form textarea:focus{
 .title-field input[type="text"],
 textarea{
   width: 100%;
-  margin: 8px 0;
+  margin: 2px 0;
 }
 form textarea{
   height: 260px;
 }
 form button{
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   background-color: var(--main-color);
   color: #fff;
   border-radius: 5px;
 }
-.category-field > div,
-.status-field > div{
+.category-field > div{
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   gap: 10px;
-  margin: 8px 0;
+  margin: 4px 0;
 }
 .category-field select{
   flex: 1;
@@ -266,50 +346,29 @@ form button{
   padding: 8px;
 }
 .category-field input[type="text"]::placeholder{
-  font-size: 14px;
-  color: var(--gloudy-gray);
+  font-size: 12px;
 }
 .status-field input[type="radio"]{
   display: none;
 }
+.status-field > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
 .status-field label:not(.status-title){
   margin: 0;
-  flex: 1;
   border: solid 1px var(--gloudy-gray);
-  padding: 10px;
-  border-radius: 30px;
   font-size: 12px;
-  transition: 0.35s;
+  flex: 1;
+  padding: 6px 2px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 4px 0;
+  transition: 0.35s; 
 }
-.status-radios label:nth-of-type(1):hover,
-#status-ready:checked + label,
-.todo-label span.mint{
-  color: var(--mint-color);
-  background-color: var(--bg-mint-color);
-  border-color: transparent;
-}
-.status-radios label:nth-of-type(2):hover,
-#status-inprogress:checked + label,
-.todo-label span.yellow{
-  color: var(--yellow-color);
-  background-color: var(--bg-yellow-color);
-  border-color: transparent;
-}
-.status-radios label:nth-of-type(3):hover,
-#status-inreview:checked + label,
-.todo-label span.purple{
-  color: var(--purple-color);
-  background-color: var(--bg-purple-color);
-  border-color: transparent;
-}
-.status-radios label:nth-of-type(4):hover,
-#status-done:checked + label,
-.todo-label span.gray{
-  color: var(--gray-color);
-  background-color: var(--bg-gray-color);
-  border-color: transparent;
-}
-/* TodoTask Null */
+/* Null TodoTask */
 .todo-content-null{
   display: flex;
   flex-direction: column;
@@ -319,4 +378,44 @@ form button{
 }
 .todo-content-null h2{
   margin: 40px;
+}
+/* ######################### Detail Content ######################### */
+.detail-container{
+  z-index: 2000;
+}
+.detail-inner{
+  flex-direction: column;
+  margin-top: 40px;
+}
+.detail-inner > div{
+  width: 100%;
+}
+.detail-inner .content-inner{
+  width: 100%;
+  padding: 20px 10px;
+  background-color: var(--bg-gray-color);
+  margin-top: 20px;
+  border-radius: 5px;
+}
+.detail-inner em{
+  font-size: 12px;
+  color: var(--gray-color);
+  margin-top: 4px;
+  display: block;
+}
+.detail-inner span{
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-top: 20px;
+  display: inline-block;
+}
+.detail-inner button{
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  background-color: var(--main-color);
 }

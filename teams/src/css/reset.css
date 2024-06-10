@@ -13,11 +13,12 @@
 body{
   margin: 0;
   font-family: 'GmarketSansMedium';
-  font-size: 16px;
+  font-size: 14px;
   outline: none;
 }
 h1, h2{
   margin: 0;
+  font-size: 16px;
 }
 button,
 input{
@@ -46,6 +47,7 @@ ul{
   --main-color: #705ABF;
   --bg-color: #D6C9F2;
   --crimson : #D95555;
+  --bg-crimson: #d9555536;
 
   /* Todo */
   --purple-color : #6D0FF2;

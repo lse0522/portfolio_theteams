@@ -1,8 +1,12 @@
+// Import React
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 
+// Import Firebase
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 
+// Import Css
+import './auto.css';
 
 function LoginPage() {
   const navigate = useNavigate(); 
@@ -42,7 +46,7 @@ function LoginPage() {
         </div>
       </div>
       <div className="login-inner">
-        <form>
+        <form className="login-form">
           <h1>Welcome!</h1>
           <div className="email-field">
             <label>email</label>

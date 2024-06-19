@@ -1,6 +1,9 @@
-import { useState } from "react";
+// Import React
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { firestore } from "../firebase";
+
+// Import FireBase
+import { firestore, auth } from "../../firebase";
 
 function TodoWriteComponent({allcategorydata , writeclose, setWriteClose}) {
   const navigate = useNavigate();
@@ -9,6 +12,16 @@ function TodoWriteComponent({allcategorydata , writeclose, setWriteClose}) {
   const [newcategory, setNewCategory] = useState("");
   const [status, setStatus] = useState("");
   const [content, setContent] = useState("");
+  const [myuid, setMyUid] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(currentUser => {
+      if(currentUser){
+        setMyUid(currentUser.uid)
+      }
+      return () => unsubscribe();
+    })
+  }, []);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -47,6 +60,7 @@ function TodoWriteComponent({allcategorydata , writeclose, setWriteClose}) {
     }
 
     let result = {
+      uid : myuid,
       title: title,
       category: category,
       status: status,
@@ -66,13 +80,15 @@ function TodoWriteComponent({allcategorydata , writeclose, setWriteClose}) {
       });
   };
   return (
-    <div className={`write-container ${writeclose ? "close" : ""}`}>
-      <div className="write-inner">
+    <div className={`detail-container todo-write ${writeclose ? "close" : ""}`}>
+      <div className="detail-header">
         <i
           onClick={() => setWriteClose(true)}
           className="bi bi-arrow-right"
-        ></i>
-        <form>
+          ></i>
+          </div>
+      <div className="detail-inner">
+        <form className="todowrite-form">
           <div className="title-field">
             <label>
               Title

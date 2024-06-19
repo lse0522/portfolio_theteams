@@ -1,12 +1,9 @@
-
+/* Font Family */
 @font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
   font-weight: normal;
-  font-style: normal;
-  /* 300, 500, 700 */
 }
-
 *{
   box-sizing: border-box;
 }
@@ -18,12 +15,16 @@ body{
 }
 h1, h2{
   margin: 0;
-  font-size: 16px;
+}
+h1{
+  font-size: 24px;
+}
+h2{
+  font-size: 18px;
 }
 button,
 input{
   border: none;
-  font-size: 16px;
 }
 select{
   -o-appearance: none;
@@ -37,28 +38,9 @@ em{
 }
 a{
   text-decoration: none;
+  color: transparent;
 }
 ul{
   padding: 0;
   list-style: none;
-}
-:root{
-  /* Object Color */
-  --main-color: #705ABF;
-  --bg-color: #D6C9F2;
-  --crimson : #D95555;
-  --bg-crimson: #d9555536;
-
-  /* Todo */
-  --purple-color : #6D0FF2;
-  --bg-purple-color : #6e0ff230;
-  --yellow-color : #F2B807;
-  --bg-yellow-color : #f2b70720;
-  --gray-color : #848484;
-  --bg-gray-color : #cfcfcf39;
-  --mint-color: #61D194;
-  --bg-mint-color: #61d1931b;
-
-  --gloudy-gray : #cfcfcf;
-  --light-gray : #999999;
 }

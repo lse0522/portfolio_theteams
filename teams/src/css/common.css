@@ -1,0 +1,440 @@
+/* ######################## Layout ######################## */
+/* Container */
+.home-container,
+.work-container,
+.chat-container,
+.todo-container,
+.contact-container,
+.setting-container{
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex; 
+}
+/* Content */
+.home-content,
+.work-content,
+.chat-content,
+.todo-content,
+.contact-content,
+.setting-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+/* Content >  div */
+.home-content > div,
+.work-content > div,
+.chat-content > div,
+.todo-content > div,
+.contact-content > div,
+.setting-content > div{
+  padding: 40px 20px;
+}
+.content-menu{
+  width: 20%;
+  border-right: solid 1px var(--gloudy-gray);
+}
+.content-inner{
+  width: 80%;
+}
+/* ###################### Detail Component View ###################### */
+/* Detail Component View : Todo Write, Todo Detail */
+.detail-container.todo-write,
+.detail-container.todo-detail,
+.detail-container.contact{
+  z-index: 100;
+  position: fixed;
+  background-color: #fff;
+  width: 30%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border-left: solid 1px var(--gloudy-gray);
+  padding: 40px;
+  animation: detail-component-view 1s both;
+}
+.detail-container.todo-write.close,
+.detail-container.todo-detail.close,
+.detail-container.contact.close{
+  animation: detail-component-close 1s both;
+}
+@keyframes detail-component-view{
+  0%{
+    right: -30%;
+  }
+  100%{
+  right: 0;
+  }
+}
+@keyframes detail-component-close{
+  0%{
+    right: 0;
+  }
+  100%{
+    right: -30%;
+  }
+} 
+/* ###################### Detail Component Header ###################### */
+.detail-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.detail-header i{
+  font-size: 18px;
+  position: relative;
+}
+.detail-header i:hover::after{
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: var(--bg-gray-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+/* ######################## Navbar ######################## */
+.navbar{
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: solid 1px var(--gloudy-gray);
+}
+.navbar a{
+  margin-top: 40px;
+  transition: 0.35s;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+.navbar i{
+  font-size: 24px;
+  color: var(--light-gray);
+}
+.navbar a:hover{
+  transform: translateY(-10px);
+}
+.home-container .navbar a:nth-child(1) i,
+.work-container .navbar a:nth-child(2) i,
+.chat-container .navbar a:nth-child(3) i,
+.todo-container .navbar a:nth-child(4) i,
+.contact-container .navbar a:nth-child(5) i,
+.setting-container .navbar a:nth-child(6) i{
+  color: var(--main-color);
+}
+/* ######################## Content Menu ######################## */
+/* Content Menu : Todo Task Menu , Contact Menu */
+.task-menu{
+  margin: 40px 0;
+}
+.task-menu > li,
+.contact-menu > li{
+  padding: 10px;
+  color: var(--light-gray); 
+  position: relative;
+}
+.contact-menu li i{
+  margin-right: 10px;
+}
+.task-menu > li.view,
+.contact-menu > li.view{
+  color: black;
+}
+.task-menu > li.view::after,
+.contact-menu > li.view::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-purple-color);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  animation: content-menu-view 1.5s ease-in-out both;
+}
+@keyframes content-menu-view{
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 100%;
+  }
+}
+/* ######################## Content Null  ######################## */
+/* Null : TodoTask, ChatRoom */
+.todo-content-null,
+.chat-content-null{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+.todo-content-null h2,
+.chat-content-null h2{
+  margin: 20px;
+}
+/* ######################## User Info ######################## */
+/* User Info : Contact, Setting */
+.setting-content .content-menu,
+.detail-inner.contact{
+  text-align: center;
+}
+.detail-inner.contact,
+.detail-inner.todo-detail{
+  margin-top: 40px;
+}
+.content-menu .user-img,
+.detail-inner .user-img{
+  width: 140px;
+  height: 140px;
+  margin: auto;
+}
+.content-menu .basic-img,
+.detail-inner .basic-img,
+.contact-data .basic-img,
+.chat-header .basic-img{
+  width: inherit;
+  height: inherit;
+  background-color: var(--bg-gray-color );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.content-menu .basic-img i,
+.detail-inner .basic-img i{ 
+  font-size: 80px;
+  color: var(--light-gray );
+}
+.user-name{
+  margin-top: 40px;
+}
+.user-position{
+  color: var(--light-gray);
+}
+.user-info{
+  text-align: start;
+  border-top: solid 0.5px var(--gloudy-gray);
+  margin-top: 40px;
+  padding-top: 20px;
+}
+.user-info li{
+  padding: 10px 0;
+}
+.user-info li i{
+  margin-right: 20px;
+  color: var(--light-gray);
+}
+/* ######################## Button ######################## */
+/* Button : Logout, Send Message */
+.btn-logout,
+.btn-sendmessage,
+.btn-todo-complete{
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  border: solid 1px var(--main-color);
+  background-color: #fff;
+  color: var(--main-color);
+  transition: 0.35s;
+}
+.btn-sendmessage i{
+  margin-right: 4px;
+}
+.btn-logout:hover,
+.btn-sendmessage:hover,
+.btn-todo-complete:hover,
+.btn-todo-complete.complete{
+  background-color: var(--main-color);
+  color: #fff;
+}
+/* ######################## Form ######################## */
+/* Form Layout */
+.login-inner:nth-child(2),
+.signup-inner:nth-child(2){
+  padding: 0 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form,
+.signup-form,
+.todowrite-form{
+  width: 100%;
+}
+.profile-form{
+  width: 500px;
+  padding-left: 20px;
+}
+/* Form Content */
+.login-form h1,
+.signup-form h1{ 
+  margin-bottom: 60px;
+}
+/* Form Label */
+.login-form label,
+.signup-form label,
+.todowrite-form label,
+.profile-form label{
+  text-transform: capitalize;
+  display: block;
+  margin-top: 20px;
+}
+.todowrite-form label em{
+  margin: 0 6px;
+  color: var(--crimson);
+  font-size: 10px;
+}
+/* Form Input, Select, TextArea */
+.login-form input:not(input[type="checkbox"]),
+.login-form select,
+.signup-form input,
+.signup-form select,
+.todowrite-form input,
+.todowrite-form select,
+.todowrite-form textarea,
+.profile-form input,
+.profile-form select{
+  border: solid 1px var(--gloudy-gray);
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  margin: 8px 0;
+}
+form input:focus,
+form select:focus,
+form textarea:focus{
+  outline: none;
+}
+.todowrite-form textarea{
+  height: 260px;
+}
+/* Form Button */
+.login-form button,
+.signup-form button,
+.todowrite-form button,
+.profile-form button{
+  width: 100%;
+  padding: 20px;
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+.login-form em,
+.signup-form em{
+  font-size: 12px;
+  color: var(--crimson);
+}
+/* Form Status */
+.status{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.status input[type="checkbox"]{
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+.status label{
+  margin-top: 0;
+  display: flex;
+}
+.status em{
+  border: solid 1px var(--gloudy-gray);
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 6px;
+  position: relative;
+}
+.status input[type="checkbox"]:checked + em::before{
+  content: '\F26E';
+  font-family: 'bootstrap-icons';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: var(--crimson);
+}
+/* Form link */
+.login-form p{
+  text-align: center;
+  margin-top: 40px;
+}
+.login-form a{
+  color: var(--main-color);
+}
+/* SignUp - Email Field */
+.signup-form .email-field > div{
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+}
+.signup-form .email-field div input[type="text"],
+.signup-form .email-field div select{
+  flex: 3;
+}
+.signup-form .email-field span{
+  text-align: center;
+  flex: 1;
+}
+/* TodoWrite : Category Field */
+.category-field > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.category-field select{
+  flex: 1;
+  text-align: center;
+}
+.category-field input[type="text"]{
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+}
+.category-field input[type="text"]::placeholder{
+  font-size: 12px;
+}
+/* TodoWrite - Status Field */
+.status-field input[type="radio"]{
+  display: none;
+}
+.status-field > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+.status-field label:not(.status-title){
+  margin: 0;
+  border: solid 1px var(--gloudy-gray);
+  font-size: 10px;
+  flex: 1;
+  padding: 6px 0;
+  border-radius: 20px;
+  text-align: center;
+  margin: 4px 0;
+  transition: 0.35s; 
+}

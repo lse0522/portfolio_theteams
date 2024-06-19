@@ -1,0 +1,20 @@
+:root{
+  /* Object Color */
+  --main-color: #705ABF;
+  --bg-color: #D6C9F2;
+  --crimson : #D95555;
+  --bg-crimson: #d9555536;
+
+  /* Todo */
+  --purple-color : #6D0FF2;
+  --bg-purple-color : #6e0ff230;
+  --yellow-color : #F2B807;
+  --bg-yellow-color : #f2b70720;
+  --gray-color : #848484;
+  --bg-gray-color : #cfcfcf39;
+  --mint-color: #61D194;
+  --bg-mint-color: #61d1931b;
+
+  --gloudy-gray : #cfcfcf;
+  --light-gray : #999999;
+}

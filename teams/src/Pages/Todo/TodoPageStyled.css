@@ -1,58 +1,3 @@
-/* LayOut */
-.todo-container{
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  display: flex; 
-}
-.navbar{
-  width: 80px;
-}
-/* Navbar */
-.navbar{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-right: solid 1px var(--gloudy-gray);
-}
-.navbar a{
-  margin-top: 40px;
-  transition: 0.35s;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-}
-.navbar i{
-  font-size: 24px;
-  color: var(--light-gray);
-}
-.navbar a:hover{
-  transform: translateY(-10px);
-}
-.todo-container .navbar a:nth-child(4) i{
-  color: var(--main-color);
-}
-/* Content LayOut */
-.todo-content{
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-.todo-content > div{
-  padding: 40px 20px;
-}
-.content-menu{
-  width: 20%;
-  position: relative;
-  border-right: solid 1px var(--gloudy-gray);
-}
-.content-inner{
-  width: 80%;
-}
-/* ################# TodoTask - menu ################# */
 /* Menu - Title */
 .menu-title{
   display: flex;
@@ -64,7 +9,6 @@
   color: var(--main-color);
   font-size: 16px;
   position: relative;
-  transition: 0.35s;
 }
 .menu-title i:hover::after{
   content: '';
@@ -77,39 +21,10 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
 }
-/* Menu */
-.task-menu{
-  margin: 40px 0;
-}
-.task-menu > li{
-  padding: 10px;
-  color: var(--light-gray); 
+/* Menu - delect button */
+.todo-content .content-menu{
   position: relative;
 }
-.task-menu > li.view{
-  color: black;
-}
-.task-menu > li.view::after{
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg-purple-color);
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  border-radius: 5px;
-  animation: todotask-menu-view 2s ease-in-out both;
-}
-@keyframes todotask-menu-view{
-  0%{
-    width: 0;
-  }
-  100%{
-    width: 100%;
-  }
-}
-/* Menu - delect button */
 .delect-button{
   position: absolute;
   bottom: 40px;
@@ -134,45 +49,9 @@
 .delect-button:hover i{
   color: #fff;
 }
-/* menu-content */
-/* TodoTask content + write comment css */
-.status-radios label:nth-of-type(1):hover,
-#status-ready:checked + label,
-.todo-label span.mint,
-.detail-container .detail-inner span.mint{
-  color: var(--mint-color);
-  background-color: var(--bg-mint-color);
-  border-color: transparent;
-}
-.status-radios label:nth-of-type(2):hover,
-#status-inprogress:checked + label,
-.todo-label span.yellow,
-.detail-container .detail-inner span.yellow{
-  color: var(--yellow-color);
-  background-color: var(--bg-yellow-color);
-  border-color: transparent;
-}
-.status-radios label:nth-of-type(3):hover,
-#status-inreview:checked + label,
-.todo-label span.purple,
-.detail-container .detail-inner span.purple{
-  color: var(--purple-color);
-  background-color: var(--bg-purple-color);
-  border-color: transparent;
-}
-.status-radios label:nth-of-type(4):hover,
-#status-done:checked + label,
-.todo-label span.gray,
-.detail-container .detail-inner span.gray{
-  color: var(--gray-color);
-  background-color: var(--bg-gray-color);
-  border-color: transparent;
-}
+/* Modal Todo Content */
 .modal-todo-content{
-  /* border: solid 1px black; */
-}
-.todo-header{
-  margin-bottom: 40px;
+  margin-top: 40px;
 }
 .todo-label{
   width: 600px;
@@ -185,6 +64,7 @@
   display: flex;
   align-items: center;
 }
+/* TodoList Check Box */
 .todolist input[type="checkbox"]{
   display: none;
 }
@@ -207,7 +87,9 @@
   font-size: 24px;
   color: var(--crimson);
 } 
-.todolist span{
+/* TodoList Status */
+.todolist span,
+.todo-detail-status{
   text-transform: capitalize;
   width: 100px;
   height: 30px;
@@ -220,7 +102,7 @@
 /* Todo Delect */
 .all-delet{
   font-size: 12px;
-  background-color: var(--gloudy-gray);
+  background-color: var(--bg-gray-color);
   width: 60px;
   height: 20px;
   border-radius: 20px;
@@ -243,179 +125,62 @@
 .todolist.bg:hover .btn-delect{
   color: var(--crimson);
 }
-/* ######################## Write Container ######################## */
-/* Write - Layout */
-/* Detail - Layout */
-.write-container,
-.detail-container{
-  position: fixed;
-  background-color: #fff;
-  width: 30%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  border-left: solid 1px var(--gloudy-gray);
-  padding: 40px;
-  animation: write-container-view 1s both;
+/* TodoTask Status : Todo Content + Todo Write Component */
+/* Ready : Mint */
+.status-radios label:nth-of-type(1):hover,
+#status-ready:checked + label,
+.todo-label span.mint,
+.todo-detail-status.mint{
+  color: var(--mint-color);
+  background-color: var(--bg-mint-color);
+  border-color: transparent;
 }
-@keyframes write-container-view{
-  0%{
-    right: -30%;
-  }
-  100%{
-  right: 0;
-  }
+/* In Progress : Yellow */
+.status-radios label:nth-of-type(2):hover,
+#status-inprogress:checked + label,
+.todo-label span.yellow,
+.todo-detail-status.yellow{
+  color: var(--yellow-color);
+  background-color: var(--bg-yellow-color);
+  border-color: transparent;
 }
-.write-container.close,
-.detail-container.close{
-  animation: write-container-close 1s both;
+/* In Review : Purple */
+.status-radios label:nth-of-type(3):hover,
+#status-inreview:checked + label,
+.todo-label span.purple,
+.todo-detail-status.purple{
+  color: var(--purple-color);
+  background-color: var(--bg-purple-color);
+  border-color: transparent;
 }
-@keyframes write-container-close{
-  0%{
-    right: 0;
-  }
-  100%{
-    right: -30%;
-  }
+/* Done : Gray */
+.status-radios label:nth-of-type(4):hover,
+#status-done:checked + label,
+.todo-label span.gray,
+.todo-detail-status.gray{
+  color: var(--gray-color);
+  background-color: var(--bg-gray-color);
+  border-color: transparent;
 }
-/* ############ Modal : Write ############ */
-.write-inner i,
-.detail-inner i{
+/*  Todo Detail Component  */
+.detail-inner.todo-detail h2{
+  margin: auto;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.todo-detail-content{
+  background-color: var(--bg-gray-color);
+  padding: 20px 10px 30px 10px;
   position: relative;
+  border-radius: 5px;
 }
-.write-inner i:hover::after,
-.detail-inner i:hover::after{
-  content: '';
+.todo-detail-content em{
   position: absolute;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-color: var(--bg-gray-color);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: -1;
-}
-form label{
-  text-transform: capitalize;
-}
-form label em{
-  margin: 0 6px;
-}
-form input,
-form textarea{
-  border: solid 1px var(--gloudy-gray);
-  border-radius: 5px;
-  padding: 10px;
-}
-form input:focus,
-form textarea:focus{
-  outline: none;
-}
-.title-field input[type="text"],
-textarea{
-  width: 100%;
-  margin: 2px 0;
-}
-form textarea{
-  height: 260px;
-}
-form button{
-  width: 100%;
-  padding: 10px;
-  background-color: var(--main-color);
-  color: #fff;
-  border-radius: 5px;
-}
-.category-field > div{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  margin: 4px 0;
-}
-.category-field select{
-  flex: 1;
-  text-align: center;
-}
-.category-field input[type="text"]{
-  flex: 1;
-  text-align: center;
-  padding: 8px;
-}
-.category-field input[type="text"]::placeholder{
-  font-size: 12px;
-}
-.status-field input[type="radio"]{
-  display: none;
-}
-.status-field > div{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4px;
-}
-.status-field label:not(.status-title){
-  margin: 0;
-  border: solid 1px var(--gloudy-gray);
-  font-size: 12px;
-  flex: 1;
-  padding: 6px 2px;
-  border-radius: 20px;
-  text-align: center;
-  margin: 4px 0;
-  transition: 0.35s; 
-}
-/* Null TodoTask */
-.todo-content-null{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
-}
-.todo-content-null h2{
-  margin: 40px;
-}
-/* ######################### Detail Content ######################### */
-.detail-container{
-  z-index: 2000;
-}
-.detail-inner{
-  flex-direction: column;
-  margin-top: 40px;
-}
-.detail-inner > div{
-  width: 100%;
-}
-.detail-inner .content-inner{
-  width: 100%;
-  padding: 20px 10px;
-  background-color: var(--bg-gray-color);
-  margin-top: 20px;
-  border-radius: 5px;
-}
-.detail-inner em{
+  bottom: 10px;
+  left: 10px;
   font-size: 12px;
   color: var(--gray-color);
-  margin-top: 4px;
-  display: block;
 }
-.detail-inner span{
-  padding: 10px 20px;
-  border-radius: 30px;
+.todo-detail-status{
   margin-top: 20px;
-  display: inline-block;
-}
-.detail-inner button{
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-  width: 100%;
-  border-radius: 10px;
-  padding: 10px;
-  color: #fff;
-  background-color: var(--main-color);
 }

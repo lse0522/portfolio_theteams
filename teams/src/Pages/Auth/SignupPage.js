@@ -1,8 +1,14 @@
+// Import React
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 
+// Import FireBase
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import {app} from '../../firebase';
+import { firestore } from "../../firebase";
+
+// Import Css
+import './auto.css';
 
 function SignupPage() {
   const navigate = useNavigate(); 
@@ -28,21 +34,32 @@ function SignupPage() {
   const onChangePwCheck = (e) =>{
     setPwCheck(e.target.value)
   }
+  // 회원가입
+  const email = emailinput + "@" + emailselect;
   const handleSignup = async(e) => {
     e.preventDefault();
-    const email = emailinput + "@" + emailselect;
-    if(name == ''){
-      return;
-    }else if(emailinput == ''){
-      return;
-    }else if(pw < 6){
-      return;
-    }else if(pw !== pwcheck){
+    if (!name || !emailinput || pw.length < 6 || pw !== pwcheck) {
       return;
     }
     try{
       const auth = getAuth(app); 
-      await createUserWithEmailAndPassword(auth, email, pw);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, pw);
+    const uid = userCredential.user.uid; 
+        // Contact
+        let contactresult = {
+          name : name,
+          email : email,
+          uid, uid
+        }
+      const contact = firestore.collection("user");
+      contact
+        .add(contactresult)
+        .then(() => {
+        alert('정보 Upload 성공!');
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
       alert('회원가입 성공!');
       navigate('/');
     }catch (error) {
@@ -64,7 +81,7 @@ function SignupPage() {
         </div>
       </div>
       <div className="signup-inner">
-        <form>
+        <form className="signup-form">
         <h1>Sign Up!</h1>
           <div className="name-field">
             <label>user name</label>

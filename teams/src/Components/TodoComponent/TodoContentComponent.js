@@ -1,13 +1,14 @@
+// Import React
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { firestore } from "../firebase";
+
+// Import FireBase
+import { firestore } from "../../firebase";
 
 function TodoContentComponent({ alltododata, categorymenu, delet, setTodoId, setDetailView }) {
   const navigate = useNavigate();
   // Category Data
   const [categorytododata, setCategoryTodoData] = useState([]);
-  // Complete
-  // const [todocomplete, setTodoComplete] = useState(false);
 
   // Category Data Filter
   useEffect(() => {
@@ -17,7 +18,7 @@ function TodoContentComponent({ alltododata, categorymenu, delet, setTodoId, set
     setCategoryTodoData(filterdata);
   }, [categorymenu]);
 
-  // Delect
+  // Todo Delect
   const handleDelet = (todotaskId) => {
     const todotask = firestore.collection("todotask").doc(todotaskId);
     todotask
@@ -30,6 +31,7 @@ function TodoContentComponent({ alltododata, categorymenu, delet, setTodoId, set
         console.error("Error removing document: ", error);
       });
   };
+  // Todo Delect All
   const handleAllDelet = () => {
     if (categorymenu === "all") {
       for (let i = 0; i < alltododata.length; i++) {
@@ -61,6 +63,7 @@ function TodoContentComponent({ alltododata, categorymenu, delet, setTodoId, set
       }
     }
   };
+  // Todo Detail View
   const onClickTodo = (todotaskId) => (e) => {
     e.preventDefault();
     setTodoId(todotaskId)
@@ -68,7 +71,6 @@ function TodoContentComponent({ alltododata, categorymenu, delet, setTodoId, set
   };
   return (
     <div className="modal-todo-content">
-      <div className="todo-header">최신순</div>
       {delet === true ? (
         <p onClick={handleAllDelet} className="all-delet">
           전체삭제

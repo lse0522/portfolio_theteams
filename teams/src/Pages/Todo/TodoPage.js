@@ -1,14 +1,18 @@
 import "./TodoPageStyled.css";
 
 import { useEffect, useState } from "react";
-import { firestore } from "../../firebase";
+import { useNavigate } from "react-router-dom";
+
+import { firestore, auth } from "../../firebase";
 
 // Import Component
 import NavbarComponent from "../../Components/NavbarComponent";
-import TodoWriteComponent from "../../Components/TodoWriteComponent";
-import TodoContentComponent from "../../Components/TodoContentComponent";
+import TodoWriteComponent from "../../Components/TodoComponent/TodoWriteComponent";
+import TodoContentComponent from "../../Components/TodoComponent/TodoContentComponent";
+import TodoDetailComponent from "../../Components/TodoComponent/TodoDetailComponent";
 
 function TodoPage() {
+  const navigate = useNavigate();
   // All TodoTask Data
   const [alltododata, setAllTodoData] = useState([]);
   const [allcategorydata, setAllCategoryData] = useState([]);
@@ -30,6 +34,17 @@ function TodoPage() {
   // 삭제버튼
   const [delet, setDelet] = useState(false);
 
+  const [myuid, setMyUid] = useState('');
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(currentUser => {
+      if(currentUser){
+        setMyUid(currentUser.uid)
+        console.log("내 uid", currentUser.uid)
+      }
+      return () => unsubscribe();
+    })
+  }, []);
+
   //writeView 없애기
   useEffect(() => {
     if (writeclose === true) {
@@ -42,18 +57,11 @@ function TodoPage() {
   useEffect(() => {
     if (detailclose === true) {
       setTimeout(() => setDetailView(false), 1500);
-      setTimeout(() => setDetailView(false), 1500);
-    }
-  }, [detailclose]);
-
-  useEffect(() => {
-    if (detailclose === true) {
-      setTimeout(() => setDetailClose(false), 1500);
       setTimeout(() => setDetailClose(false), 1500);
     }
   }, [detailclose]);
 
-  // 전체 데이터
+  // Todo Task 전체 데이터
   useEffect(() => {
     const todotask = firestore.collection("todotask");
     const todosData = [];
@@ -62,8 +70,11 @@ function TodoPage() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          todosData.push({ id: doc.id, ...doc.data() });
-          categorydata.push(doc.data().category);
+          const data = doc.data(); 
+          if(data.uid === myuid){
+            todosData.push({ id: doc.id, ...doc.data() });
+            categorydata.push(doc.data().category);
+          }
         });
         setAllTodoData(todosData);
         const set = new Set(categorydata);
@@ -72,7 +83,7 @@ function TodoPage() {
       .catch((error) => {
         console.error("Error fetching documents: ", error);
       });
-  }, []);
+  }, [myuid]);
 
   return (
     <div className="todo-container">
@@ -80,7 +91,7 @@ function TodoPage() {
       <div className="todo-content">
         <div className="content-menu">
           <div className="menu-title">
-            <h1>ToDo Task</h1>
+            <h2>ToDo Task</h2>
             <i
               onClick={() => setWriteView(true)}
               className="bi bi-pen-fill"
@@ -135,76 +146,6 @@ function TodoPage() {
           todoid={todoid}
         />
       ) : null}
-    </div>
-  );
-}
-
-function TodoDetailComponent({ detailclose, setDetailClose, alltododata, todoid }) {
-  // Detail todo data
-  const [detaildata, setDetailData] = useState({});
-  const [detailstatus, setDetailStatus] = useState('');
-
-  useEffect(()=>{
-    const filter = alltododata.filter((data) => data.id === todoid);
-    if (filter.length > 0) {
-      setDetailData(filter[0]);
-      if(filter[0].status === "ready"){
-        setDetailStatus('mint')
-      }else if(filter[0].status === "in progress"){
-        setDetailStatus('yellow')
-      }else if(filter[0].status === "in review"){
-        setDetailStatus('purple')
-      }else if(filter[0].status === "done"){
-        setDetailStatus('gray')
-      }
-    } else {
-      setDetailData({});
-    }
-  }, [todoid])
-
-  // Date
-  const changeDate = (timestamp) => {
-    if (timestamp) {
-      const date = timestamp.toDate();
-      return date.toLocaleDateString('ko-KR', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      }).replace(/\./g, '').replace(' ', '.')
-    } else {
-      return null ;
-    }
-  };
-
-  const completeTodo= () =>{
-    const todotask = firestore.collection("todotask").doc(todoid);
-    todotask.update({
-      complete: true
-    })
-    .then(() => {
-      alert("완료!");
-    })
-    .catch((error) => {
-      console.error("업데이트 실패: ", error);
-    });
-
-  }
-
-  return (
-    <div className={`detail-container ${detailclose ? "close" : ""}`}>
-      <i onClick={() => setDetailClose(true)} className="bi bi-arrow-right"></i>
-      <div className="detail-inner">
-        <div>
-        <h1>{detaildata.title}</h1>
-        <div className=" content-inner">
-
-        <p>{detaildata.content}</p>
-        </div>
-        <em>{detaildata.date ? changeDate(detaildata.date) : '로딩 중...'}</em>
-        <span className={detailstatus}>{detaildata.status}</span>
-        <button onClick={completeTodo}>완료</button>
-        </div>
-      </div>
     </div>
   );
 }

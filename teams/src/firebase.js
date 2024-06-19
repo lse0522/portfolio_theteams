@@ -3,6 +3,7 @@
 import firebase from "firebase/compat/app"
 // import "firebase/firestore";
 import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
 
 // 회원가입
 import { initializeApp } from 'firebase/app';
@@ -28,5 +29,6 @@ const firebaseConfig = {
 // const app = initializeApp(firebaseConfig);
 const app = firebase.initializeApp(firebaseConfig);
 const firestore = app.firestore();
+const auth = firebase.auth();
 
-export {app ,firestore};
+export {app ,firestore, auth};

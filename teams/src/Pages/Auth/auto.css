@@ -1,0 +1,57 @@
+/* ####################### Layout Container ####################### */
+/* Login / Sign Up */
+.login-container,
+.signup-container{
+  width: 100%;
+  height: 100vh;
+}
+.login-container > div,
+.signup-container > div{
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.login-inner:nth-child(1),
+.signup-inner:nth-child(1){
+  background-color:  var(--main-color);
+  position: relative;
+}
+.circle-inner,
+.title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title{
+  color: #fff;
+  font-size: 40px;
+}
+.circle{
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: solid 0.5px #fff;
+  border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%;
+  animation: circle 10s ease infinite;
+}
+.circle:nth-child(2){
+  animation-delay: 3s;
+}
+.circle:nth-child(3){
+  animation-direction: reverse;
+}
+@keyframes circle{
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

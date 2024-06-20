@@ -5,10 +5,7 @@ import './css/variables.css'
 import './css/reset.css'
 
 // Common CSs
-// import './css/navbar.css'
-// import './css/layout.css'
 import './css/common.css'
-// import './css/form.css'
 
 // Import
 import React from "react";

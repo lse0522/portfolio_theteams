@@ -48,7 +48,6 @@ function TodoDetailComponent({
       return null;
     }
   };
-
   // Todo Done
   const completeTodo = () => {
     const todotask = firestore.collection("todotask").doc(todoid);

@@ -25,7 +25,7 @@
   font-size: 24px;
   color: var(--light-gray );
 }
-/* User Info */
+/* Chat List :  User Info */
 .chat-list .user-name{
   margin: 0;
   font-size: 16px;
@@ -46,20 +46,106 @@
   padding: 0 40px;
   background-color: #fff;
 }
-/* User Img */
+/* Chat Header, Message Box : User Img */
 .chat-header .user-img{
   width: 80px;
   height: 80px;
   margin: 0;
   margin-right: 20px;
 }
+.message-box .user-img{
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
 .chat-header .basic-img i{
   font-size: 40px;
   color: var(--light-gray );
 }
-/* User Info */
+.message-box .basic-img i{
+  font-size: 20px;
+  color: var(--light-gray );
+}
 .chat-header .user-name{
   margin: 0;
   font-size: 18px;
   padding-bottom: 10px;
+}
+/* Chat Date */
+.chat-create-date{
+  text-align: center;
+  padding: 10px 0;
+}
+.chat-create-date span{
+  color: var(--light-gray);
+}
+/* Chat Messages Container */
+.chat-messages-container{
+  width: 100%;
+  height: 100%;
+}
+.modal-chat-content{
+  position: relative;
+  overflow: hidden;
+}
+.message-box{
+  display: flex;
+  padding: 0 40px;
+  align-items: center;
+}
+.message-box.my-message{
+  justify-content: right;
+}
+.message-box.chatmate-message{
+  justify-content: left;
+}
+.message-box.my-message p{
+  background-color: var(--main-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+}
+.message-box.chatmate-message p{
+  border: solid 1px var(--main-color);
+  background-color: #fff;
+  color: var(--main-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.message-box em{
+  color: var(--light-gray);
+  margin: 0 10px;
+  margin-top: 14px;
+  font-size: 10px;
+}
+/* Chat Input Container */
+.chat-input-container{
+  width: 100%;
+  height: 100px;
+  position:absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+.chat-input-container input{
+  flex: 8;
+  padding: 10px 20px;
+  background-color: #fff;
+  background-color: var(--bg-gray-color);
+}
+.chat-input-container input:focus{
+  outline: none;
+}
+.chat-input-container button{
+  flex: 2;
+  background-color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: 0.35s;
+}
+.chat-input-container button:hover{
+  background-color: var(--main-color);
+  color: #fff;
 }

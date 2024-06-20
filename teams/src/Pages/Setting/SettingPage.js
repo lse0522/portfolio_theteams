@@ -113,6 +113,7 @@ function SettingPage() {
     const auth = getAuth();
     signOut(auth).then(() => {
       alert("로그아웃 성공");
+      navigate('/');
     }).catch((error) => {
       alert("로그아웃 실패")
       console.error("로그아웃 실패: ", error);

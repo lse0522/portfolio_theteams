@@ -203,7 +203,8 @@
 .content-menu .basic-img,
 .detail-inner .basic-img,
 .contact-data .basic-img,
-.chat-header .basic-img{
+.chat-header .basic-img,
+.message-box .basic-img{
   width: inherit;
   height: inherit;
   background-color: var(--bg-gray-color );

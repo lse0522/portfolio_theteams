@@ -71,6 +71,11 @@
   font-size: 18px;
   padding-bottom: 10px;
 }
+/* Chat View */
+.chat-view{
+  overflow-y: scroll;
+  height: calc(100% - 200px);
+}
 /* Chat Date */
 .chat-create-date{
   text-align: center;
@@ -128,6 +133,7 @@
   background-color: #fff;
   box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
   display: flex;
+  /* display: none; */
 }
 .chat-input-container input{
   flex: 8;

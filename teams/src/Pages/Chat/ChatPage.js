@@ -195,8 +195,7 @@ function ChatPage() {
         <div className="content-inner">
           {chatid === "" ? (
             <div className="chat-content-null">
-              <h2>게시물이 없습니다!</h2>
-              <p>오늘의 일정을 등록해 주세요!</p>
+              <h2>채팅방을 선택해 주세요!</h2>
             </div>
           ) : (
             <div className="modal-chat-content">
@@ -251,12 +250,12 @@ function ChatPage() {
                   ))}
                 </div>
 
+              </div>
                 {/* 채팅 입력창 */}
                 <div className="chat-input-container">
                   <input type="text" onChange={onChangeInputMessage} />
                   <button onClick={handleSendMessage}>send message</button>
                 </div>
-              </div>
             </div>
           )}
         </div>

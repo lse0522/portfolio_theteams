@@ -10,7 +10,7 @@ function ContactDetailComponent({
   setDetailClose,
   contactid,
   allcontactdata,
-  myuid
+  myuid,
 }) {
   const navigate = useNavigate();
   const [detaildata, setDetailData] = useState({});
@@ -34,27 +34,32 @@ function ContactDetailComponent({
   const handleChat = (e) => {
     e.preventDefault();
     let result = {
-      myuid : myuid,
-      chatmateinfo : {
-        uid : detaildata.uid,
-        name : detaildata.name,
-        position : detaildata.position,
+      myuid: myuid,
+      chatmateinfo: {
+        uid: detaildata.uid,
+        name: detaildata.name,
+        position: detaildata.position,
+        photourl : detaildata.photourl
       },
-      date: new Date()
+      date: new Date(),
     };
     const chatroom = firestore.collection("chatroom");
     chatroom
       .add(result)
-      .then(()=>{
-        alert("Upload 성공!");
-        navigate('/chat');
+      .then(() => {
+        alert("채팅방 만들기 성공!");
+        navigate("/chat");
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
-
   };
-  
+
+  // 셋팅페이지 가기
+  const handleGoToSetting = (e) => {
+    e.preventDefault();
+    navigate("/setting");
+  }
 
   return (
     <div className={`detail-container contact ${detailclose ? "close" : ""}`}>
@@ -68,7 +73,15 @@ function ContactDetailComponent({
       <div className="detail-inner contact">
         <div className="user-img">
           <div className="basic-img">
-            <i className="bi bi-person-fill"></i>
+            {detaildata.photourl ? (
+              <img
+                src={detaildata.photourl}
+                alt="userphotourl"
+                className="userphoto-img"
+              />
+            ) : (
+              <i className="bi bi-person-fill"></i>
+            )}
           </div>
         </div>
         <h1 className="user-name">{detaildata.name}</h1>
@@ -87,13 +100,16 @@ function ContactDetailComponent({
             {detaildata.location}
           </li>
         </ul>
-        {
-          detaildata.uid === myuid ? "Null" :
-        <button onClick={handleChat} className="btn-sendmessage">
-          <i className="bi bi-send"></i>
-          send message
-        </button>
-        }
+        {detaildata.uid === myuid ? (
+          <button onClick={handleGoToSetting} className="btn-sendmessage">
+            Go To My Page
+          </button>
+        ) : (
+          <button onClick={handleChat} className="btn-sendmessage">
+            <i className="bi bi-send"></i>
+            send message
+          </button>
+        )}
       </div>
     </div>
   );

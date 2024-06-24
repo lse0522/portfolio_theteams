@@ -10,7 +10,6 @@ function HomePage(){
     const unsubscribe = auth.onAuthStateChanged(currentUser => {
       if(currentUser){
         setMyUid(currentUser.uid)
-        console.log("내 uid", currentUser.uid)
       }
       return () => unsubscribe();
     })

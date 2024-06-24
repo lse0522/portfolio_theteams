@@ -195,7 +195,8 @@
   margin-top: 40px;
 }
 .content-menu .user-img,
-.detail-inner .user-img{
+.detail-inner .user-img,
+.userimg-field .user-img{
   width: 140px;
   height: 140px;
   margin: auto;
@@ -204,7 +205,8 @@
 .detail-inner .basic-img,
 .contact-data .basic-img,
 .chat-header .basic-img,
-.message-box .basic-img{
+.message-box .basic-img,
+.userimg-field .basic-img{
   width: inherit;
   height: inherit;
   background-color: var(--bg-gray-color );
@@ -214,9 +216,17 @@
   border-radius: 50%;
 }
 .content-menu .basic-img i,
-.detail-inner .basic-img i{ 
+.detail-inner .basic-img i,
+.userimg-field .basic-img i{ 
   font-size: 80px;
   color: var(--light-gray );
+}
+/* User Img */
+.userphoto-img{
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .user-name{
   margin-top: 40px;

@@ -47,6 +47,7 @@ function ChatPage() {
           }
         });
         setChatRoom(chatroomData);
+        console.log(chatroomData);
       })
       .catch((error) => {
         console.error("Error fetching documents: ", error);
@@ -169,7 +170,15 @@ function ChatPage() {
               <li key={chatdata.id} onClick={() => setChatId(chatdata.id)}>
                 <div className="user-img">
                   <div className="basic-img">
-                    <i className="bi bi-person-fill"></i>
+                    {chatdata.chatmateinfo.photourl ? (
+                      <img
+                        src={chatdata.chatmateinfo.photourl}
+                        alt="userphotourl"
+                        className="userphoto-img"
+                      />
+                    ) : (
+                      <i className="bi bi-person-fill"></i>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -202,7 +211,15 @@ function ChatPage() {
               <div className="chat-header">
                 <div className="user-img">
                   <div className="basic-img">
-                    <i className="bi bi-person-fill"></i>
+                    {selectedchatroom.photourl ? (
+                      <img
+                        src={selectedchatroom.photourl}
+                        alt="userphotourl"
+                        className="userphoto-img"
+                      />
+                    ) : (
+                      <i className="bi bi-person-fill"></i>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -239,7 +256,15 @@ function ChatPage() {
                         <div className="message-box chatmate-message">
                           <div className="user-img">
                             <div className="basic-img">
-                              <i className="bi bi-person-fill"></i>
+                              {selectedchatroom.photourl ? (
+                                <img
+                                  src={selectedchatroom.photourl}
+                                  alt="userphotourl"
+                                  className="userphoto-img"
+                                />
+                              ) : (
+                                <i className="bi bi-person-fill"></i>
+                              )}
                             </div>
                           </div>
                           <p>{message.content}</p>
@@ -249,13 +274,12 @@ function ChatPage() {
                     </div>
                   ))}
                 </div>
-
               </div>
-                {/* 채팅 입력창 */}
-                <div className="chat-input-container">
-                  <input type="text" onChange={onChangeInputMessage} />
-                  <button onClick={handleSendMessage}>send message</button>
-                </div>
+              {/* 채팅 입력창 */}
+              <div className="chat-input-container">
+                <input type="text" onChange={onChangeInputMessage} />
+                <button onClick={handleSendMessage}>send message</button>
+              </div>
             </div>
           )}
         </div>

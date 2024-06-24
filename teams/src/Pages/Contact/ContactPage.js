@@ -115,7 +115,15 @@ function ContactPage() {
                     <div>
                       <div className="user-img">
                         <div className="basic-img">
+                          {
+                            contactdata.photourl ? 
+                            <img
+                            src={contactdata.photourl}
+                            alt="userphotourl"
+                            className="userphoto-img"
+                          /> : 
                           <i className="bi bi-person-fill"></i>
+                          }
                         </div>
                       </div>
                       {contactdata.name}

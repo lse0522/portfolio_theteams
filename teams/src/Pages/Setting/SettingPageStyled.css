@@ -1,0 +1,30 @@
+/* 유저 이미지 아이콘 */
+.userimg-field .basic-img{
+  position: relative;
+  cursor: pointer;
+}
+.userimg-field .basic-img::after{
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+  right: 5px;
+  bottom: 5px;
+  z-index: 50;
+}
+.userimg-field .basic-img::before{
+  content: '\F219';
+  font-family: "bootstrap-icons";
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 20px;
+  z-index: 100;
+  color: #fff;
+}
+/* user Input File */
+.userimg-field input[type="file"]{
+  display: none;
+}
